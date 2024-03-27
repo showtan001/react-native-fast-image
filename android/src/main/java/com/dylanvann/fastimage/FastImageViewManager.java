@@ -56,6 +56,11 @@ class FastImageViewManager extends SimpleViewManager<FastImageViewWithUrl> imple
         return new FastImageViewWithUrl(reactContext);
     }
 
+    @ReactProp(name = "useLastImageAsDefaultSource")
+    public void useLastImageAsDefaultSource(FastImageViewWithUrl view, @Nullable Boolean isActivated) {
+        view.useLastImageAsDefaultSource(isActivated);
+    }
+
     @ReactProp(name = "source")
     public void setSource(FastImageViewWithUrl view, @Nullable ReadableMap source) {
         view.setSource(source);

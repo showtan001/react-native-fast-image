@@ -27,11 +27,16 @@ import java.util.Map;
 import javax.annotation.Nonnull;
 
 class FastImageViewWithUrl extends AppCompatImageView {
+    private Boolean mUseLastImageAsDefaultSource = false;
     private boolean mNeedsReload = false;
     private ReadableMap mSource = null;
     private Drawable mDefaultSource = null;
 
     public GlideUrl glideUrl;
+
+    public void useLastImageAsDefaultSource(@Nullable Boolean isActivated) {
+        mUseLastImageAsDefaultSource = isActivated;
+    }
 
     public FastImageViewWithUrl(Context context) {
         super(context);
@@ -141,7 +146,7 @@ class FastImageViewWithUrl extends AppCompatImageView {
                             .load(imageSource == null ? null : imageSource.getSourceForLoad())
                             .apply(FastImageViewConverter
                                     .getOptions(context, imageSource, mSource)
-                                    .placeholder(mDefaultSource) // show until loaded
+                                    .placeholder(mUseLastImageAsDefaultSource ? this.getDrawable() : mDefaultSource) // show until loaded
                                     .fallback(mDefaultSource)); // null will not be treated as error
 
             if (key != null)

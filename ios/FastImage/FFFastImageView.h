@@ -10,6 +10,7 @@
 
 @interface FFFastImageView : SDAnimatedImageView
 
+@property (nonatomic, assign) BOOL useLastImageAsDefaultSource;
 @property (nonatomic, copy) RCTDirectEventBlock onFastImageLoadStart;
 @property (nonatomic, copy) RCTDirectEventBlock onFastImageProgress;
 @property (nonatomic, copy) RCTDirectEventBlock onFastImageError;
